@@ -17,6 +17,7 @@ public class Start
             System.out.println("PRESS 3 to Display student");
             System.out.println("PRESS 4 to Update");
             System.out.println("PRESS 5 to Exit");
+            System.out.print("Enter choice: ");
             int c = Integer.parseInt(br.readLine());
 
             if(c==1)
