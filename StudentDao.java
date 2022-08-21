@@ -108,22 +108,40 @@ public class StudentDao
         //PreparedStatement
         PreparedStatement pstmt = con.prepareStatement(q);
         //set the value of parameter..
-        if(name == "*")
-            pstmt.setString(1,st.getStudentName());
-        else 
+        String str = "*";
+        if(!name.equals(str))
             pstmt.setString(1,name);
-
-        if(phone =="*")
-            pstmt.setString(2,st.getStudentPhone());
-        else 
+        else
+        {
+            String qry = "select sname from students where sid=6;";
+            Statement stmt = con.createStatement();
+            ResultSet set = stmt.executeQuery(qry);            
+            name = set.getString(2);
+            pstmt.setString(1,name);
+        }
+        if(!phone.equals(str))
             pstmt.setString(2,phone);
+         else
+        {
+            String qry = "select sphone from students where sid=6;";
+            Statement stmt = con.createStatement();
+            ResultSet set = stmt.executeQuery(qry);            
+            phone = set.getString(3);
+            pstmt.setString(2,phone);
+        }
 
-        if(city =="*")
-            pstmt.setString(3,st.getStudentCity());
-        else 
+        if(!city.equals(str))
             pstmt.setString(3,city);
+          else
+        {
+            String qry = "select scity from students where sid=6;";
+            Statement stmt = con.createStatement();
+            ResultSet set = stmt.executeQuery(qry);            
+            city = set.getString(4);
+            pstmt.setString(3,city);
+        }
 
-            pstmt.setInt(4,id);
+        pstmt.setInt(4,id);
 
         //execute..
         pstmt.executeUpdate();
